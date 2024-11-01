@@ -58,7 +58,17 @@ class KvasirDataset(data.Dataset):
         self.h_size = img_size[1]
         self.w_size = img_size[0]
         self.whole_image = whole_image
-        self.images, self.masks = get_dataset_path(root, mode)
+
+
+        # Define directories for images and masks
+        self.image_dir = os.path.join(root, mode, 'images')
+        self.mask_dir = os.path.join(root, mode, 'masks')
+
+        # Get list of image and mask file names
+        self.images = sorted(os.listdir(self.image_dir))
+        self.masks = sorted(os.listdir(self.mask_dir))
+
+        # self.images, self.masks = get_dataset_path(root, mode)
         if len(self.images) == 0:
             raise RuntimeError('Found 0 images in subfolders of:' + root + '\n')
 

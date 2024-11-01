@@ -294,7 +294,7 @@ def parse_args():
                         help='which optimizer to use. (default: adam)')
     parser.add_argument('--epochs', default=150, type=int, metavar='N',
                         help='number of epochs to train (default: 10)')
-    parser.add_argument('--batch-size', type=int, default=8, metavar='N',
+    parser.add_argument('--batch-size', type=int, default=4, metavar='N',
                         help='input batch size for training (default: 8)')
     parser.add_argument('--head-lr-factor', type=int, default=1)
     parser.add_argument('--lr', type=float, default=1e-4, metavar='LR',
