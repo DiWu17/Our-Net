@@ -4,6 +4,7 @@
 import ast
 import os
 import sys
+import time
 
 cwd = os.getcwd()
 root = os.path.split(os.path.split(cwd)[0])[0]
@@ -272,7 +273,8 @@ def parse_args():
     parser.add_argument('--model', type=str, default='banet')
     parser.add_argument('--is-train', type=ast.literal_eval, default=True)
     parser.add_argument('--backbone', default='resnet50')
-    parser.add_argument('--checkname', default='exp-0506_banet')
+    daytime = time.strftime('%m%d', time.localtime(time.time()))
+    parser.add_argument('--checkname', default=f'exp-{daytime}_banet')
     parser.add_argument('--dilated', type=ast.literal_eval, default=True)
     parser.add_argument('--deep-base', type=ast.literal_eval, default=False)
     parser.add_argument('--img-size', type=int, nargs='+', default=[256, 256])
