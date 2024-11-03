@@ -41,8 +41,8 @@ class Trainer():
             transform.Normalize([.485, .456, .406], [.229, .224, .225])])
         # dataset
         data_kwargs = {'transform': input_transform, 'img_size': args.img_size}
-        trainset = get_segmentation_dataset(args.dataset, mode='train', augment=True, **data_kwargs)
-        testset = get_segmentation_dataset(args.dataset, mode='test', augment=False, **data_kwargs)
+        trainset = get_segmentation_dataset(args.dataset, root=args.path, mode='train', augment=True, **data_kwargs)
+        testset = get_segmentation_dataset(args.dataset, root=args.path, mode='test', augment=False, **data_kwargs)
         # dataloader
         kwargs = {'num_workers': args.workers, 'pin_memory': True}
         self.trainloader = data.DataLoader(trainset, batch_size=args.batch_size, drop_last=True, shuffle=True, **kwargs)
@@ -270,10 +270,12 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--seed', type=int, default=666)
     parser.add_argument('--dataset', type=str, default='kvasir')
+    parser.add_argument('--path', type=str, default='D:/python/Our-Net/Data/kvasir/')
     parser.add_argument('--model', type=str, default='banet')
     parser.add_argument('--is-train', type=ast.literal_eval, default=True)
     parser.add_argument('--backbone', default='resnet50')
-    daytime = time.strftime('%m%d', time.localtime(time.time()))
+    # 把日期改为当天日期加时间
+    daytime = time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time()))
     parser.add_argument('--checkname', default=f'exp-{daytime}_banet')
     parser.add_argument('--dilated', type=ast.literal_eval, default=True)
     parser.add_argument('--deep-base', type=ast.literal_eval, default=False)
@@ -319,7 +321,7 @@ def parse_args():
                         help='whether to fine turning (default: True for training)')
     parser.add_argument('--log-file', type=str, default='log.txt')
     parser.add_argument('--resume-dir', type=str,
-                        default=parser.parse_args().dataset + '/' + parser.parse_args().model + '_model/' + parser.parse_args().checkname,
+                        default='experiment/' + parser.parse_args().dataset + '/' + parser.parse_args().model + '_model/' + parser.parse_args().checkname,
                         metavar='PATH')
     args = parser.parse_args()
 

@@ -8,7 +8,7 @@ import random
 
 class ISIC2017Dataset(Dataset):
     NUM_CLASS = 2
-    def __init__(self, mode, root="F:/Datasets/2DSegmentation/ISIC2017", transform=None, mask_transform=None, augment=False, img_size=(256, 256), whole_image=False):
+    def __init__(self, root="F:/Datasets/2DSegmentation/ISIC2017", mode="train", transform=None, mask_transform=None, augment=False, img_size=(256, 256), whole_image=False):
         """
         Args:
             mode (str): Mode of the dataset, either 'train', 'val', or 'test'.

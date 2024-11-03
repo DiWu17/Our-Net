@@ -1,3 +1,7 @@
 /experiment/isic2017/
 /experiment/pretrain_models/
 /Data/
+*.xml
+.idea/Our-Net.iml
+/experiment/kvasir/
+/pretrain_models/

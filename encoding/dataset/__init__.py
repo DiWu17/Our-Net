@@ -7,5 +7,5 @@ datasets = {
 }
 
 
-def get_segmentation_dataset(name, **kwargs):
-    return datasets[name.lower()](**kwargs)
+def get_segmentation_dataset(name, root, mode, **kwargs):
+    return datasets[name.lower()](root, mode, **kwargs)
